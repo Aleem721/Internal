@@ -1,0 +1,76 @@
+
+ Install Spring Tools for Eclipse
+
+1. Visit [spring.io/tools](https://spring.io/tools) and download Spring Tools for Eclipse.
+2. Extract the downloaded JAR file.
+3. Open Spring Tool Suite (STS) from the extracted folder.
+
+Create a Spring Boot Project
+
+1. Open Spring Tool Suite.
+2. Select "Spring Starter Project."
+3. Set the following project details:
+   - Project Name: demo
+   - Type: Maven
+   - Packaging: JAR
+   - Java Version: 17
+   - Language: Java
+4. Click "Next."
+5. Search for "Spring Web" and select it. Click "Finish."
+
+Create a Sample Controller
+
+1. Expand the project: `first_project` -> `src` -> `main` -> `java`.
+2. Right-click on `first_project` -> `New` -> `Class`.
+3. Name the class as "SampleController" and click "Finish."
+4. In `SampleController.java`, add the following code:
+Program
+   import org.springframework.web.bind.annotation.GetMapping;
+   import org.springframework.web.bind.annotation.RestController;
+
+   @RestController
+   public class SampleController {
+       @GetMapping(value = "/display")
+       public String print() {
+           return "Welcome to MSRIT MCA";
+       }
+   }
+   ```
+
+Change Port Number
+
+1. Open `src/main/resources/application.properties`.
+2. Add the following line to change the port number to 8081:
+   
+   server.port=8081
+   
+
+ Add Spring Boot DevTools
+
+1. Search for Spring Boot DevTools in Maven Repository.
+2. Select version 3.1.6 and copy the Maven dependency code.
+3. Open `first_project` -> `pom.xml` and paste the dependency code. Save the file.
+
+Build and Run the Application
+
+1. Stop and run the application by right-clicking on `first_project` -> `Run As` -> `Maven Build`.
+2. Set the goal as `clean install`, check "Skip Tests," and click "Apply and Run."
+3. On the right panel,expand the target folder and find the jar file->right click->properties and copy the path.
+4. follow the path and copy the path of the folder
+
+ Deploy on Elastic Beanstalk:
+
+1. Go to the [AWS Elastic Beanstalk Console](https://console.aws.amazon.com/elasticbeanstalk/).
+2. Create application, values to ensure 
+- env name, 
+domain, 
+choose platform=java,
+upload the build maven jar, 
+single instance, 
+3. uncheck managed updates
+4, select vpc , auto assign Ip address, security groups and subnets
+5. Create Environemnt
+7. Monitor the deployment progress in the Elastic Beanstalk console.
+
+8. Once the deployment is complete, you can access your Spring Boot application using the provided URL.
+
