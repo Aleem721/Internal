@@ -1,0 +1,63 @@
+Exercise: To Run SQL Commands from EC2 Instance
+INSTALLATION
+Run an Instance
+Connect using putty
+sudo –i
+yum install httpd
+service httpd start
+yum install php
+service httpd restart
+yum install -y https://dev.mysql.com/get/mysql80-community-release-el9-5.noarch.rpm
+yum install mysql
+yum install mysql-server
+mysql -u admin -h database-1.cfbfrqeps3ko.ap-south-1.rds.amazonaws.com -P 3306 -p
+( -u: username, -h hostname i.e database endpoint, –p it will ask for password: enter password)
+SQL COMMANDS FROM HERE AT SQL PROMPT
+SHOW DATABASES;
+CREATE DATABASE StudDB;
+USE StudDB;
+CREATE TABLE student (
+studentid INT AUTO_INCREMENT PRIMARY KEY,
+username VARCHAR(50) NOT NULL
+);
+INSERT INTO student (username) VALUES
+('me' ),
+('you');
+exit;
+Exercise : To Run PHP code from EC2 Instance to retrieve data from Database in AWS-RDS
+INSTALLATION
+yum install php
+yum install php-mysqlnd
+service httpd start
+PROGRAM CREATION
+cd /var/www/html
+cat>>rdsconnect.php
+PROGRAM CREATION
+<?php
+$servername = "database-1.cfbfrqeps3ko.ap-south-1.rds.amazonaws.com"; // Replace with your
+MySQL server hostname
+$username = "admin"; // Replace with your MySQL username
+$password = "admin123"; // Replace with your MySQL password
+$dbname = "StudDB"; // Replace with your database name
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+// Check connection
+if ($conn->connect_error) {
+die("Connection failed: " . $conn->connect_error);
+}
+// SQL query to retrieve data from the "test" table
+$sql = "SELECT studentid, studentname FROM StudDB.student";
+$result = $conn->query($sql);
+// Check if any rows were returned
+if ($result->num_rows > 0) {
+// Output data of each row
+while ($row = $result->fetch_assoc()) {
+echo "ID: " . $row["studentid"] . " - Username: " . $row["studentname"] . "<br>";
+}
+} else {
+echo "0 results";
+}
+// Close connection
+$conn->close();
+?>
+RUN THE FILE FROM THE BROWSER
