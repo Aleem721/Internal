@@ -60,4 +60,7 @@ echo "0 results";
 // Close connection
 $conn->close();
 ?>
-RUN THE FILE FROM THE BROWSERwhatever it is
+whatever it is
+
+life is beautiful
+
