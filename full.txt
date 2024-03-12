@@ -60,4 +60,4 @@ echo "0 results";
 // Close connection
 $conn->close();
 ?>
-RUN THE FILE FROM THE BROWSER
+RUN THE FILE FROM THE BROWSERwhatever it is
